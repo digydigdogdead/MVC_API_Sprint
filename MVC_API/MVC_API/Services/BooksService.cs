@@ -17,6 +17,11 @@
             return BooksModel.GetBook(id);
         }
 
+        public List<Book> GetBooksByAuthorId(int id)
+        {
+            return BooksModel.GetBooksByAuthorId(id);
+        }
+
         public void PostBook(Book book)
         {
             var books = BooksModel.GetAllBooks();

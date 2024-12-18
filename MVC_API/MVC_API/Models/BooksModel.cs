@@ -38,5 +38,16 @@ namespace MVC_API
 
             File.WriteAllText("Resources/Books.json", JsonSerializer.Serialize(allBooks));
         }
+
+        public static List<Book> GetBooksByAuthorId(int id)
+        {
+            var allBooks = GetAllBooks();
+            var allAuthors = AuthorModel.GetAllAuthors();
+
+            return (from book in allBooks
+                    join author in allAuthors on book.Author equals author.Name
+                    where author.Id == id
+                    select book).ToList();
+        }
     }
 }

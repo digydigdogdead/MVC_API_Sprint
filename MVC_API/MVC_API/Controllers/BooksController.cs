@@ -27,6 +27,12 @@ namespace MVC_API.Controllers
             else return BadRequest();
         }
 
+        [HttpGet("author/{authorId}")]
+        public IActionResult GetBookByAuthorId(int authorId)
+        {
+            return Ok(_bookService.GetBooksByAuthorId(authorId));
+        }
+
         [HttpPost]
         public IActionResult PostBook(Book book)
         {
