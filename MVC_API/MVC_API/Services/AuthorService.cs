@@ -8,5 +8,10 @@ namespace MVC_API
         {
             return AuthorModel.GetAllAuthors();
         }
+
+        public Author? GetAuthor(int id)
+        {
+            return AuthorModel.GetAuthor(id);
+        }
     }
 }

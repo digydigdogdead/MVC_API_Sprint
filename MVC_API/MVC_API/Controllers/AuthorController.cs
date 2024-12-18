@@ -19,5 +19,12 @@ namespace MVC_API.Controllers
             return Ok(authors);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetAuthor(int id)
+        {
+            Author? result = _authorService.GetAuthor(id);
+            if (result != null) return Ok(result);
+            else return BadRequest();
+        }
     }
 }
