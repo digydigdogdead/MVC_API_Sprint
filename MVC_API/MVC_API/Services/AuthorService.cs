@@ -13,5 +13,14 @@ namespace MVC_API
         {
             return AuthorModel.GetAuthor(id);
         }
+
+        public void PostAuthor(Author author)
+        {
+            var authors = AuthorModel.GetAllAuthors();
+            var highestID = authors.Last().Id + 1;
+
+            author.Id = highestID;
+            AuthorModel.PostAuthor(author);
+        }
     }
 }

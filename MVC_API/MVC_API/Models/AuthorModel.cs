@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace MVC_API
 {
@@ -20,6 +21,14 @@ namespace MVC_API
                 }
             }
             return null;
+        }
+
+        public static void PostAuthor(Author author)
+        {
+            var allAuthors = GetAllAuthors();
+            allAuthors.Add(author);
+
+            File.WriteAllText("Resources/Authors.json", JsonSerializer.Serialize(allAuthors));
         }
     }
 }

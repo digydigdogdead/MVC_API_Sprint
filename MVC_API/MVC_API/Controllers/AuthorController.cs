@@ -26,5 +26,12 @@ namespace MVC_API.Controllers
             if (result != null) return Ok(result);
             else return BadRequest();
         }
+
+        [HttpPost]
+        public IActionResult PostAuthor(Author author)
+        {
+            _authorService.PostAuthor(author);
+            return Created($"/authors/{author.Id}", author);
+        }
     }
 }
