@@ -1,9 +1,12 @@
-﻿using System.Text.Json;
-
-namespace MVC_API
+﻿namespace MVC_API
 {
     public class AuthorService
     {
+        public bool authorExists(int id)
+        {
+            var allAuthors = GetAllAuthors();
+            return allAuthors.Any(a => a.Id == id);
+        }
         public List<Author> GetAllAuthors()
         {
             return AuthorModel.GetAllAuthors();
@@ -21,6 +24,11 @@ namespace MVC_API
 
             author.Id = highestID;
             AuthorModel.PostAuthor(author);
+        }
+
+        public void DeleteAuthor(int id)
+        {
+            AuthorModel.DeleteAuthor(id);
         }
     }
 }

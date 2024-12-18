@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace MVC_API
 {
@@ -10,7 +9,7 @@ namespace MVC_API
             return JsonSerializer.Deserialize<List<Author>>(File.ReadAllText("Resources/Authors.json"));
         }
 
-        public static Author? GetAuthor(int id) 
+        public static Author? GetAuthor(int id)
         {
             var allAuthors = GetAllAuthors();
             foreach (var author in allAuthors)
@@ -27,6 +26,15 @@ namespace MVC_API
         {
             var allAuthors = GetAllAuthors();
             allAuthors.Add(author);
+
+            File.WriteAllText("Resources/Authors.json", JsonSerializer.Serialize(allAuthors));
+        }
+
+        public static void DeleteAuthor(int id)
+        {
+            var allAuthors = GetAllAuthors();
+            var authorToDelete = allAuthors.Where(x => x.Id == id).ToList()[0];
+            allAuthors.Remove(authorToDelete);
 
             File.WriteAllText("Resources/Authors.json", JsonSerializer.Serialize(allAuthors));
         }

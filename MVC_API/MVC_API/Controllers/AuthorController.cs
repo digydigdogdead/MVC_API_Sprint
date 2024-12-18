@@ -33,5 +33,15 @@ namespace MVC_API.Controllers
             _authorService.PostAuthor(author);
             return Created($"/authors/{author.Id}", author);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteAuthor(int id)
+        {
+            bool searchResult = _authorService.authorExists(id);
+            if (!searchResult) return BadRequest();
+            _authorService.DeleteAuthor(id);
+            return NoContent();
+
+        }
     }
 }
