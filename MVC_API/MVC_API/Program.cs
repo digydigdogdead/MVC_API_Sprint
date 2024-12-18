@@ -8,6 +8,8 @@ namespace MVC_API
             builder.Services.AddControllers();
             builder.Services.AddScoped<AuthorService>();
             builder.Services.AddScoped<AuthorModel>();
+            builder.Services.AddScoped<BookService>();
+            builder.Services.AddScoped<BooksModel>();
 
             var app = builder.Build();
 
